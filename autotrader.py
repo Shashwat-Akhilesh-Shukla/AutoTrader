@@ -277,7 +277,7 @@ def execute_trade(trade):
             transaction_type=dhan.BUY if action=='BUY' else dhan.SELL,
             quantity=1,  # You might want to calculate this based on risk management
             order_type=dhan.MARKET,
-            product_type=dhan.INTRA if order_type == 'INTRADAY' else dhan.DELIVERY,
+            product_type=dhan.INTRA if order_type == 'INTRADAY' else dhan.CNC,
             price=0
         )
         
