@@ -1,12 +1,12 @@
 # 🤖 Autonomous Trading Bot
 
-A Python-based trading bot that uses AI to analyze market data and execute trades on Indian stocks. Built with a Streamlit dashboard for easy monitoring and control.
+A Python-based Autonomous trading bot that uses DeepSeek R1 to analyze market data and execute trades on Indian stocks. All autonomously!. Built with a Streamlit dashboard for easy monitoring and control.
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Python 3.11+
+- Python 3.12 recommended
 - PostgreSQL database
 - Dhan trading account (if you want to integrate with any other broker you can do so with minimal changes)
 - Krutrim Cloud API access
