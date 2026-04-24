@@ -1,0 +1,8 @@
+dhanhq==2.0.2
+krutrim_cloud==0.7.0
+pandas==2.2.3
+plotly==6.0.0
+python-dotenv==1.0.1
+SQLAlchemy==2.0.38
+streamlit==1.42.2
+tvdatafeed==2.1.0
