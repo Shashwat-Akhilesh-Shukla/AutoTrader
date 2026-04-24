@@ -6,8 +6,7 @@ A Python-based Autonomous trading bot that uses DeepSeek R1 to analyze market da
 
 ### Prerequisites
 
-- Python 3.12 recommended
-- PostgreSQL database
+- Python 3.11+
 - Dhan trading account (if you want to integrate with any other broker you can do so with minimal changes)
 - Krutrim Cloud API access
 
@@ -29,7 +28,7 @@ A Python-based Autonomous trading bot that uses DeepSeek R1 to analyze market da
    CLIENT=your_dhan_client_id
    TOKEN=your_dhan_access_token
    API_KEY=your_krutrim_api_key
-   DATABASE_URL=postgresql://username:password@localhost:5432/trading_data
+   DATABASE_URL=sqlite:///trading_data.db
    ```
 
 4. Run the dashboard:
@@ -42,7 +41,7 @@ A Python-based Autonomous trading bot that uses DeepSeek R1 to analyze market da
 This trading bot combines market data, AI analysis, and automated execution:
 
 1. **Market Data**: Fetches OHLCV data from TradingView for stocks on your watchlist
-2. **Database Storage**: Stores market data in PostgreSQL for analysis and backtesting
+2. **Database Storage**: Stores market data in SQLite for analysis and backtesting
 3. **AI Analysis**: Uses DeepSeek model via Krutrim Cloud to analyze patterns and generate trade signals
 4. **Trade Execution**: Executes trades via Dhan's API with risk management
 

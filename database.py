@@ -7,7 +7,7 @@ import os
 @st.cache_resource
 def get_database_engine():
     try:
-        DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:shashwat@localhost:5432/trading_data")
+        DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///trading_data.db")
         engine = create_engine(DATABASE_URL)
         Base.metadata.create_all(engine)
         return engine
