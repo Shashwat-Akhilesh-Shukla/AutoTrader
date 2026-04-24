@@ -2,27 +2,29 @@ import os
 import streamlit as st
 from dhanhq import dhanhq
 from krutrim_cloud import KrutrimCloud
-from tvDatafeed import TvDatafeed
+from  tvDatafeed import TvDatafeed
 
 @st.cache_resource
 def initialize_dhan_and_krutrim():
     missing_keys = []
-    if not os.getenv('CLIENT'):
-        missing_keys.append("CLIENT (Dhan Client ID)")
-    if not os.getenv('TOKEN'):
-        missing_keys.append("TOKEN (Dhan Access Token)")
+    dhan = None
+    
+    if os.getenv('CLIENT') and os.getenv('TOKEN'):
+        try:
+            dhan = dhanhq(client_id=os.getenv('CLIENT'), access_token=os.getenv("TOKEN"))
+        except Exception as e:
+            st.warning(f"Failed to initialize Dhan: {e}")
+    
+    client = None
     if not os.getenv('API_KEY'):
         missing_keys.append("API_KEY (Krutrim API Key)")
-    
-    if missing_keys:
-        return None, None, missing_keys
-    
-    try:
-        dhan = dhanhq(client_id=os.getenv('CLIENT'), access_token=os.getenv("TOKEN"))
-        client = KrutrimCloud(api_key=os.environ.get("API_KEY"))
-        return dhan, client, []
-    except Exception as e:
-        return None, None, [str(e)]
+    else:
+        try:
+            client = KrutrimCloud(api_key=os.environ.get("API_KEY"))
+        except Exception as e:
+            missing_keys.append(f"Krutrim Cloud Error: {e}")
+            
+    return dhan, client, missing_keys
 
 @st.cache_resource
 def get_tv_datafeed():
