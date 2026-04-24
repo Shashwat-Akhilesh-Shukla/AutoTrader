@@ -55,7 +55,7 @@ def render_dashboard():
 
         if st.session_state.auto_execute:
             st.write("✅ Auto-execution is ENABLED")
-            for symbol in st.session_state.WATCHLIST:
+            for symbol in WATCHLIST:
                 trade, error = get_trade_decision(symbol)
                 if trade:
                     trade['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
