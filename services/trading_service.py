@@ -131,6 +131,7 @@ def execute_trade(trade: Dict) -> Tuple[bool, str]:
                 "order_type": trade.get("order_type", "INTRADAY"),
                 "risk_score": trade.get("risk_score", 1),
                 "confidence": trade.get("confidence", 1),
+                "reasoning": trade.get("reasoning", "No reasoning provided"),
                 "timestamp": pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')
             }
         }
