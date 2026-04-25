@@ -85,19 +85,21 @@ def fetch_and_store_data(symbols=None) -> Tuple[bool, str]:
     else:
         return True, f"All {success_count} stocks updated successfully"
 
+from sqlalchemy import select
+from datetime import datetime, timedelta
+
 def get_data_from_db(symbol: str, days: int = 30) -> pd.DataFrame:
     engine = get_database_engine()
     if not engine:
         return None
     
-    query = f"""
-    SELECT * FROM ohlcv_data 
-    WHERE symbol = '{symbol}' 
-    AND datetime >= CURRENT_DATE - INTERVAL '{days} days'
-    ORDER BY datetime
-    """
-    
     try:
+        cutoff_date = datetime.now() - timedelta(days=days)
+        query = select(OHLCVData).where(
+            OHLCVData.symbol == symbol,
+            OHLCVData.datetime >= cutoff_date
+        ).order_by(OHLCVData.datetime)
+        
         return pd.read_sql(query, engine)
     except Exception as e:
         st.error(f"Error fetching data: {e}")
