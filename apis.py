@@ -2,7 +2,6 @@ import os
 import streamlit as st
 from dhanhq import dhanhq
 from krutrim_cloud import KrutrimCloud
-from  tvDatafeed import TvDatafeed
 
 @st.cache_resource
 def initialize_dhan_and_krutrim():
@@ -25,11 +24,3 @@ def initialize_dhan_and_krutrim():
             missing_keys.append(f"Krutrim Cloud Error: {e}")
             
     return dhan, client, missing_keys
-
-@st.cache_resource
-def get_tv_datafeed():
-    try:
-        return TvDatafeed()
-    except Exception as e:
-        st.error(f"Error initializing TradingView data feed: {e}")
-        return None
